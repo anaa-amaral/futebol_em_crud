@@ -37,6 +37,6 @@ INSERT INTO jogadores (nome, posicao, numero_camisa, time_id) VALUES
 ('João Lima', 'MEI', 8, 2),
 ('Pedro Rocha', 'ZAG', 4, 3);
 
-INSERT INTO partidas (time_casa_id, time_fora_id, data_jogo, gols_casa, gols_fora) VALUES
-(1, 2, '2025-08-20', 2, 1),
-(3, 1, '2025-08-27', 0, 0);
+INSERT INTO partidas (time_casa_id, time_fora_id, data_jogo) VALUES
+(1, 2, '2025-08-20'),
+(3, 1, '2025-08-27');
