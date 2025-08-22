@@ -87,8 +87,7 @@ $result = $stmt->get_result();
         </div>
         <div class="col-md-4">
             <button type="submit" class="btn btn-primary">Filtrar</button>
-            <a href="index.php" class="btn btn-secondary">Limpar</a>
-        </div>
+            </div>
     </form>
 
     <!-- Tabela -->
