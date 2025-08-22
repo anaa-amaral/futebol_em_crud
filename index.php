@@ -20,6 +20,7 @@
     <a href="../public/times/read.php"></a>
     <a href="../public/times/update.php"></a>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/script.js"></script>
     <title>CRUD FUTEBOL</title>
 </head>
 
