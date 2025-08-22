@@ -1,4 +1,10 @@
 <?php include('../../includes/db.php');?>
+
+<h2>Lista de Jogadores</h2>
+<a href="create.php">
+    ➕ Adicionar Jogador
+</a>
+
 <h2>Lista de Jogadores</h2>
 <table border="1" cellpadding="5">
     <tr>
