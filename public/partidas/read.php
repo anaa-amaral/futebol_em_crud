@@ -132,3 +132,6 @@ $result = $stmt->get_result();
     <?php endfor; ?>
   </ul>
 </nav>
+
+<?php include('../../includes/footer.php'); ?>
+<link rel="stylesheet" href="../../style/style.css">
