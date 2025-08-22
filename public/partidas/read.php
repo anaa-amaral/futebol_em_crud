@@ -89,3 +89,5 @@ $result = $stmt->get_result();
     <?php endwhile; ?>
     
 </table>
+
+<?php include('../../includes/footer.php'); ?>
