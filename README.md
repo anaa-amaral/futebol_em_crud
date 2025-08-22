@@ -1,4 +1,4 @@
-                                             Futebol em Crude.
+                                         Futebol em Crude.
 
 Este projeto foi desenvolvido com o princípio de estudo sobre Crude, SQL e XAMPP, nele programamos um  software com filtros e paginação, do qual tem a função de cadastrar  jogadores, times e partidas, como se fosse um site para auxiliar jornalistas e atletas. Sua linguagem é SQL e PHP.
 
