@@ -3,34 +3,49 @@ include('../../includes/db.php');
 include('../../includes/header.php'); 
 ?>
 
-<h2>Cadastrar Jogador</h2>
-<form method="POST">
-    <label for="nome"> Nome:</label>
-    <input type="text" name="nome" id="nome" required><br>
+<div class="container mt-4">
+    <h2 class="mb-4">Cadastrar Jogador</h2>
 
-    <label for="posicao">Posição:</label>
-    <select name="posicao" required>
-        <option value="GOL">Goleiro</option>
-        <option value="ZAG">Zagueiro</option>
-        <option value="LAT">Lateral</option>
-        <option value="MEI">Meio-campo</option>
-        <option value="ATA">Atacante</option>
-    </select><br>
- 
-    <label for="numero_camisa"> Número da Camisa:</label>
-    <input type="number" name="numero_camisa" id="numero_camisa" min="1" max="99" required><br>
+    <form method="POST" class="row g-3">
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control" required>
+        </div>
 
-    <label for="times"> Times:</label>
-    <select name="time_id">
-        <?php
-        $result = $conn->query("SELECT id, nome FROM times");
-        while($row = $result->fetch_assoc()) {
-            echo "<option value='{$row['id']}'>{$row['nome']}</option>";
-        }
-        ?>
-    </select><br><br>
-    <button type="submit" name="salvar">Salvar</button>
-</form>
+        <div class="col-md-6">
+            <label for="posicao" class="form-label">Posição</label>
+            <select name="posicao" class="form-select" required>
+                <option value="GOL">Goleiro</option>
+                <option value="ZAG">Zagueiro</option>
+                <option value="LAT">Lateral</option>
+                <option value="MEI">Meio-campo</option>
+                <option value="ATA">Atacante</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="numero_camisa" class="form-label">Número da Camisa</label>
+            <input type="number" name="numero_camisa" id="numero_camisa" class="form-control" min="1" max="99" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="time_id" class="form-label">Time</label>
+            <select name="time_id" class="form-select" required>
+                <?php
+                $result = $conn->query("SELECT id, nome FROM times");
+                while($row = $result->fetch_assoc()) {
+                    echo "<option value='{$row['id']}'>{$row['nome']}</option>";
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" name="salvar" class="btn btn-success">Salvar</button>
+            <a href="read.php" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 
 <?php
 if (isset($_POST['salvar'])) {
@@ -46,7 +61,7 @@ if (isset($_POST['salvar'])) {
         header("Location: read.php");
         exit;
     } else {
-        echo "Erro: " . $conn->error;
+        echo "<div class='alert alert-danger mt-3'>Erro: " . $conn->error . "</div>";
     }
 }
 ?>
