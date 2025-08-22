@@ -25,11 +25,28 @@ CREATE TABLE partidas (
     FOREIGN KEY (time_fora_id) REFERENCES times(id)
 );
 
--- dados exemplos
+-- dados inseridos
 INSERT INTO times (nome, cidade) VALUES
-('Atlético Central', 'Belo Horizonte'),
+('Botafogo', 'Rio de Janeiro'),
+('Palmeiras', 'São Paulo'),
+('Internacional', 'Porto Alegre'),
+('Falmengo', 'Rio de Janeiro'),
+('São Paulo', 'São Paulo'),
+('Santos', 'São Paulo'),
+('Sport', 'Recife'),
+('Cruzeiro', 'Belo Horizonte'),
+('Bahia', 'Salvador'),
+('Ceará', 'Fortaleza'),
+('Mirassol', 'Mirassol'),
+('Corinthians', 'São Paulo'),
+('Vitória', 'Salvador'),
+('Vasco', 'Rio de Janeiro'),
+('Juventude', 'Caxias do Sul'),
 ('Grêmio', 'Porto Alegre'),
-('Corinthians', 'São Paulo');
+('Fluminense', 'Rio de Janeiro'),
+('Atletico MG', 'Belo Horizonte'),
+('Bragantino', 'Bragança Paulista'),
+('Fortaleza', 'Fortaleza');
 
 INSERT INTO jogadores (nome, posicao, numero_camisa, time_id) VALUES
 ('Carlos Silva', 'GOL', 1, 1),
