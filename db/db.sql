@@ -30,7 +30,7 @@ INSERT INTO times (nome, cidade) VALUES
 ('Botafogo', 'Rio de Janeiro'),
 ('Palmeiras', 'São Paulo'),
 ('Internacional', 'Porto Alegre'),
-('Falmengo', 'Rio de Janeiro'),
+('Flamengo', 'Rio de Janeiro'),
 ('São Paulo', 'São Paulo'),
 ('Santos', 'São Paulo'),
 ('Sport', 'Recife'),
