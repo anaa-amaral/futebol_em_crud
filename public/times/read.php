@@ -131,3 +131,6 @@ $result = $stmt->get_result();
         </ul>
     </nav>
 </div>
+
+<?php include('../../includes/footer.php'); ?>
+<link rel="stylesheet" href="../../style/style.css">
