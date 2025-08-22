@@ -12,10 +12,40 @@ $pagina = $_GET['pagina'] ?? 1;
 $itens_por_pagina = 10;
 $offset = ($pagina - 1) * $itens_por_pagina;
 
-// Consulta com filtros
-$sql = "SELECT p.*, 
-               tc.nome as time_casa, 
-               tf.nome as time_fora 
+// Contar total de registros com filtros
+$sqlCount = "SELECT COUNT(*) as total FROM partidas p
+             JOIN times tc ON p.time_casa_id = tc.id
+             JOIN times tf ON p.time_fora_id = tf.id
+             WHERE 1=1";
+
+$paramsCount = [];
+$typesCount = "";
+
+// Filtro por time
+if ($timeFiltro) {
+    $sqlCount .= " AND (tc.nome LIKE ? OR tf.nome LIKE ?)";
+    $paramsCount[] = "%$timeFiltro%";
+    $paramsCount[] = "%$timeFiltro%";
+    $typesCount .= "ss";
+}
+
+// Filtro por período
+if ($dataInicio) {
+    $sqlCount .= " AND p.data_jogo >= ?";
+    $paramsCount[] = $dataInicio;
+    $typesCount .= "s";
+}
+
+$stmtCount = $conn->prepare($sqlCount);
+if (!empty($paramsCount)) {
+    $stmtCount->bind_param($typesCount, ...$paramsCount);
+}
+$stmtCount->execute();
+$total_registros = $stmtCount->get_result()->fetch_assoc()['total'];
+$total_paginas = ceil($total_registros / $itens_por_pagina);
+
+// Consulta principal com filtros e paginação
+$sql = "SELECT p.*, tc.nome as time_casa, tf.nome as time_fora 
         FROM partidas p
         JOIN times tc ON p.time_casa_id = tc.id
         JOIN times tf ON p.time_fora_id = tf.id
@@ -40,7 +70,7 @@ if ($dataInicio) {
 }
 
 // Limite para paginação
-$sql .= " LIMIT ?, ?";
+$sql .= " ORDER BY p.data_jogo DESC LIMIT ?, ?";
 $params[] = $offset;
 $params[] = $itens_por_pagina;
 $types .= "ii";
@@ -93,3 +123,14 @@ $result = $stmt->get_result();
         <?php endwhile; ?>
     </tbody>
 </table>
+
+<!-- Paginação -->
+<nav>
+  <ul class="pagination">
+    <?php for($i = 1; $i <= $total_paginas; $i++): ?>
+      <li class="page-item <?= $i == $pagina ? 'active' : '' ?>">
+        <a class="page-link" href="?pagina=<?= $i ?>&time=<?= urlencode($timeFiltro) ?>&data_inicio=<?= $dataInicio ?>&data_fim=<?= $dataFim ?>"><?= $i ?></a>
+      </li>
+    <?php endfor; ?>
+  </ul>
+</nav>
