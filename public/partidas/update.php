@@ -2,6 +2,8 @@
 include('../../includes/db.php');
 include('../../includes/header.php');
 
+$erro = "";
+
 if (!isset($_GET['id'])) {
     echo "<p>ID da partida não informado.</p>";
     include('../../includes/footer.php');
@@ -97,6 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Atualizar</button>
+    <button type="submit" class="btn btn-primary">Atualizar <a href="read.php"></a></button> 
     <a href="read.php" class="btn btn-secondary">Cancelar</a>
 </form>

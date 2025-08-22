@@ -13,10 +13,10 @@
         </a>
         <div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="./public/times/read.php">Times</a></li>
-                <li class="nav-item"><a class="nav-link" href="./public/jogadores/read.php">Jogadores</a></li>
-                <li class="nav-item"><a class="nav-link" href="./public/partidas/read.php">Partidas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/index.php">Página Inicial</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../public/times/read.php">Times</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../public/jogadores/read.php">Jogadores</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../public/partidas/read.php">Partidas</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../index.php">Página Inicial</a></li>
             </ul>
         </div>
     </div>
