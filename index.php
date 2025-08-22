@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <a href="../includes/db.php"></a>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="./style/style.css">
     <a href="../public/jogadores/create.php"></a>
     <a href="../public/jogadores/delete.php"></a>
     <a href="../public/jogadores/read.php"></a>
