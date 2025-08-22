@@ -12,7 +12,7 @@ Este projeto foi desenvolvido com o princípio de estudo sobre Crude, SQL e XAMP
 -Bootstrap
 -Html e Css
 
-                    Estrutura do projeto:
+                         Estrutura do projeto:
 
  O Futebol em Crude é dividido nas pastas : Assets ( contém a logo), db (contém o banco de dados), includes ( com  o arquivo que conecta o código do banco ao XAMPP, o código pé do nosso projeto e o cabeçalho.) public ( com duas pastas, a de jogadores com create,delete, rede update, e a pasta de times, com a mesma coisa), style ( com o style do código) , por fim arquivos como a licença, o index e o README (do qual você está lendo).
 
@@ -22,13 +22,13 @@ Conexão: db.php;
 Css: style.css
 
 
-                       Requisitos:
+                        Requisitos:
 -XAMPP instalado;
 -Navegador;
 -Editor de código :VSCode, sublime..
 
 
-                       Rodando:
+                          Rodando:
 -Clonar repositório do gitHub;
 -Use um diretório do XAMPP;
 -Ligue o  XAMPP  e ative o MySQL e Apache;
@@ -39,7 +39,7 @@ Css: style.css
 
 
 
-                        Funções Principais:
+                           Funções Principais:
 
 Times:
 -Cadastrar times: nome obrigatório
@@ -66,7 +66,7 @@ Partidas:
 
 
 
-                            Regras
+                              Regras
 
 -Número da camisa: somente entre 1 e 99
 
@@ -83,7 +83,7 @@ Partidas:
 -Confirmação antes de exclusão
 
 
-                           Erros:
+                                Erros:
 
 -Erro de conexão com o banco: verifique :db.php
 
@@ -95,7 +95,7 @@ Partidas:
 
 
 
-                           Testar o código:
+                             Testar o código:
 
 
 -Acesse o menu principal via index.php
@@ -118,7 +118,7 @@ Partidas:
 
 
 
-                Créditos e Licença
+                             Créditos e Licença
 
 Este projeto foi desenvolvido pelos alunos : KamilaKaroliny, anaa-amaral, jjoaomiguel, Amandamoller7.
 Projetado pelo nosso professor de desenvolvimento de sistemas Ícaro Botelho
