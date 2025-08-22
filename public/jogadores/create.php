@@ -1,4 +1,7 @@
-<?php include('../../includes/db.php'); ?>
+<?php 
+include('../../includes/db.php');
+include('../../includes/header.php'); 
+?>
 
 <h2>Cadastrar Jogador</h2>
 <form method="POST">
@@ -40,7 +43,8 @@ if (isset($_POST['salvar'])) {
             VALUES ('$nome', '$posicao', $numero_camisa, $time_id)";
 
     if ($conn->query($sql)) {
-        echo "Jogador cadastrado com sucesso!";
+        header("Location: read.php");
+        exit;
     } else {
         echo "Erro: " . $conn->error;
     }

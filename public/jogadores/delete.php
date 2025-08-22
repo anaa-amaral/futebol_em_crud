@@ -1,4 +1,7 @@
-<?php include('../../includes/db.php'); 
+<?php 
+include('../../includes/db.php');
+include('../../includes/header.php');
+
 $id = $_GET['id'];
 
 $sql = "DELETE FROM jogadores WHERE id=$id";
