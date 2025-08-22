@@ -118,7 +118,7 @@ Partidas:
 
 
 
-                            Créditos e Licença
+                                       Créditos e Licença
 
 Este projeto foi desenvolvido pelos alunos : KamilaKaroliny, anaa-amaral, jjoaomiguel, Amandamoller7.
 Projetado pelo nosso professor de desenvolvimento de sistemas Ícaro Botelho
