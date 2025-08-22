@@ -8,11 +8,13 @@ $posicaoFiltro = $_GET['posicao'] ?? '';
 $timeFiltro = $_GET['time'] ?? '';
 
 // Paginação
-$pagina = $_GET['pagina'] ?? 1;
+$pagina = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
 $itens_por_pagina = 10;
 $offset = ($pagina - 1) * $itens_por_pagina;
 
-// Contar total de registros com filtros
+/* =======================================================
+   CONTAGEM DE REGISTROS (com filtros aplicados)
+======================================================= */
 $sqlCount = "SELECT COUNT(*) as total 
              FROM jogadores j
              LEFT JOIN times t ON j.time_id = t.id
@@ -22,35 +24,34 @@ $paramsCount = [];
 $typesCount = "";
 
 // Filtro por nome
-if ($nomeFiltro) {
+if (!empty($nomeFiltro)) {
     $sqlCount .= " AND j.nome LIKE ?";
     $paramsCount[] = "%$nomeFiltro%";
     $typesCount .= "s";
 }
 
 // Filtro por posição
-if ($posicaoFiltro) {
+if (!empty($posicaoFiltro)) {
     $sqlCount .= " AND j.posicao = ?";
     $paramsCount[] = $posicaoFiltro;
     $typesCount .= "s";
 }
 
 // Filtro por time
-if ($timeFiltro) {
+if (!empty($timeFiltro)) {
     $sqlCount .= " AND t.nome LIKE ?";
     $paramsCount[] = "%$timeFiltro%";
     $typesCount .= "s";
 }
 
 $stmtCount = $conn->prepare($sqlCount);
-if (!empty($paramsCount)) {
+if ($paramsCount) {
     $stmtCount->bind_param($typesCount, ...$paramsCount);
 }
 $stmtCount->execute();
 $total_registros = $stmtCount->get_result()->fetch_assoc()['total'];
-$total_paginas = ceil($total_registros / $itens_por_pagina);
+$total_paginas = max(1, ceil($total_registros / $itens_por_pagina));
 
-// Consulta principal com filtros e paginação
 $sql = "SELECT j.id, j.nome, j.posicao, j.numero_camisa, t.nome AS nome_time
         FROM jogadores j
         LEFT JOIN times t ON j.time_id = t.id
@@ -60,28 +61,28 @@ $params = [];
 $types = "";
 
 // Filtro por nome
-if ($nomeFiltro) {
+if (!empty($nomeFiltro)) {
     $sql .= " AND j.nome LIKE ?";
     $params[] = "%$nomeFiltro%";
     $types .= "s";
 }
 
 // Filtro por posição
-if ($posicaoFiltro) {
+if (!empty($posicaoFiltro)) {
     $sql .= " AND j.posicao = ?";
     $params[] = $posicaoFiltro;
     $types .= "s";
 }
 
 // Filtro por time
-if ($timeFiltro) {
+if (!empty($timeFiltro)) {
     $sql .= " AND t.nome LIKE ?";
     $params[] = "%$timeFiltro%";
     $types .= "s";
 }
 
-// Ordenação + paginação
-$sql .= " ORDER BY j.id DESC LIMIT ?, ?";
+// Ordenação + paginação (mais recentes primeiro)
+$sql .= " ORDER BY id ASC LIMIT ?, ?";
 $params[] = $offset;
 $params[] = $itens_por_pagina;
 $types .= "ii";
@@ -132,20 +133,24 @@ $result = $stmt->get_result();
         </tr>
     </thead>
     <tbody>
-        <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['id'] ?></td>
-                <td><?= $row['nome'] ?></td>
-                <td><?= $row['posicao'] ?></td>
-                <td><?= $row['numero_camisa'] ?></td>
-                <td><?= $row['nome_time'] ?? '—' ?></td>
-                <td>
-                    <a class="btn btn-sm btn-warning" href="update.php?id=<?= $row['id'] ?>">Editar</a>
-                    <a class="btn btn-sm btn-danger" href="delete.php?id=<?= $row['id'] ?>" 
-                       onclick="return confirm('Deseja realmente excluir este jogador?')">Excluir</a>
-                </td>
-            </tr>
-        <?php endwhile; ?>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= htmlspecialchars($row['nome']) ?></td>
+                    <td><?= htmlspecialchars($row['posicao']) ?></td>
+                    <td><?= htmlspecialchars($row['numero_camisa']) ?></td>
+                    <td><?= $row['nome_time'] ?? '—' ?></td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" href="update.php?id=<?= $row['id'] ?>">Editar</a>
+                        <a class="btn btn-sm btn-danger" href="delete.php?id=<?= $row['id'] ?>" 
+                           onclick="return confirm('Deseja realmente excluir este jogador?')">Excluir</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr><td colspan="6" class="text-center">Nenhum jogador encontrado.</td></tr>
+        <?php endif; ?>
     </tbody>
 </table>
 
@@ -154,7 +159,8 @@ $result = $stmt->get_result();
     <ul class="pagination">
         <?php for($i=1; $i<=$total_paginas; $i++): ?>
             <li class="page-item <?= ($i == $pagina) ? 'active' : '' ?>">
-                <a class="page-link" href="?pagina=<?= $i ?>&nome=<?= urlencode($nomeFiltro) ?>&posicao=<?= urlencode($posicaoFiltro) ?>&time=<?= urlencode($timeFiltro) ?>">
+                <a class="page-link" 
+                   href="?pagina=<?= $i ?>&nome=<?= urlencode($nomeFiltro) ?>&posicao=<?= urlencode($posicaoFiltro) ?>&time=<?= urlencode($timeFiltro) ?>">
                     <?= $i ?>
                 </a>
             </li>
