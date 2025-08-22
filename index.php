@@ -36,7 +36,7 @@
 
 <div class="container login-options text-center">
     <h1 class="mb-5">Escolha o que deseja analisar!</h1>
-    <div class="d-grid gap-3 col-6 mx-auto">
+    <div class="d-grid gap-5 col-7 mx-auto">
         <button class="btn btn-success btn-login" onclick="window.location.href='./public/jogadores/read.php'">
             Jogadores
         </button>
