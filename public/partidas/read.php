@@ -104,7 +104,6 @@ $result = $stmt->get_result();
             <th>Mandante</th>
             <th>Visitante</th>
             <th>Data</th>
-            <th>Placar</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -114,7 +113,6 @@ $result = $stmt->get_result();
             <td><?= $row['time_casa'] ?></td>
             <td><?= $row['time_fora'] ?></td>
             <td><?= $row['data_jogo'] ?></td>
-            <td><?= $row['gols_casa'] ?> x <?= $row['gols_fora'] ?></td>
             <td>
                 <a class="btn btn-sm btn-warning" href="update.php?id=<?= $row['id'] ?>">Editar</a>
                 <a class="btn btn-sm btn-danger" href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
