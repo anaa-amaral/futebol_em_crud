@@ -57,8 +57,8 @@ if ($cidadeFiltro) {
     $types .= "s";
 }
 
-// Ordenação e limite
-$sql .= " ORDER BY nome ASC LIMIT ?, ?";
+// Ordenação por ID decrescente
+$sql .= " ORDER BY id ASC LIMIT ?, ?";
 $params[] = $offset;
 $params[] = $itens_por_pagina;
 $types .= "ii";
@@ -87,7 +87,7 @@ $result = $stmt->get_result();
         </div>
         <div class="col-md-4">
             <button type="submit" class="btn btn-primary">Filtrar</button>
-            </div>
+        </div>
     </form>
 
     <!-- Tabela -->
