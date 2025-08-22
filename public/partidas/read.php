@@ -38,11 +38,6 @@ if ($dataInicio) {
     $params[] = $dataInicio;
     $types .= "s";
 }
-if ($dataFim) {
-    $sql .= " AND p.data_jogo <= ?";
-    $params[] = $dataFim;
-    $types .= "s";
-}
 
 // Limite para paginação
 $sql .= " LIMIT ?, ?";
@@ -67,9 +62,6 @@ $result = $stmt->get_result();
     </div>
     <div class="col-md-3">
         <input type="date" name="data_inicio" class="form-control" value="<?= $dataInicio ?>">
-    </div>
-    <div class="col-md-3">
-        <input type="date" name="data_fim" class="form-control" value="<?= $dataFim ?>">
     </div>
     <div class="col-md-2">
         <button type="submit" class="btn btn-primary w-100">Filtrar</button>
