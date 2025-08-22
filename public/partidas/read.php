@@ -83,7 +83,7 @@ $result = $stmt->get_result();
 
 <div class="d-flex justify-content-between mb-3">
     <h2>Partidas dos próximos jogos - Brasileirão Série A</h2>
-    <a class="btn btn-success" href="create.php">Cadastrar Partida</a>
+    <a class="btn btn-success" href="create.php">➕ Cadastrar Partida</a>
 </div>
 
 <form class="row g-3 mb-3" method="get">
